@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'active_support/time'
+# require 'active_support/time'
 
 require 'mixpanel-ruby/people'
 
@@ -59,9 +59,9 @@ describe Mixpanel::People do
   end
 
   it 'should convert offset ActiveSupport::TimeWithZone objects to UTC' do
-    Time.zone = 'Pacific Time (US & Canada)'
+    #Time.zone = 'Pacific Time (US & Canada)'
     @people.set("TEST ID", {
-        'created_at' => Time.zone.local(2013, 1, 1, 18, 4, 5)
+        'created_at' => DateTime.parse('2013-01-02T02:04:05') # Time.zone.local(2013, 1, 1, 18, 4, 5)
     })
     expect(@log).to eq([[:profile_update, 'data' => {
         '$token' => 'TEST TOKEN',
